@@ -112,6 +112,7 @@ export class KinesisServiceExtension implements ServiceExtension {
         ? (injectedBytes as Uint8Array).byteLength
         : new TextEncoder().encode(injectedBytes as string).byteLength;
 
+      console.log('Injected context into Kinesis record, new byte length:', byteLength);
       // Kinesis record limit is 1 MB (1,048,576 bytes). Skip injection if
       // the enriched payload would exceed that.
       if (byteLength > 1_048_576) {
